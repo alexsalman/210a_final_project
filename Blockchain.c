@@ -236,7 +236,6 @@ int main(int argc, char *argv[])
     Block b = get(chain, 0);
     char *value = data(b);
     *value = (*value) + 1; // change a value in the first block
-    // printf("valid = %d\n", valid(chain));
 
     printf("%d\n", append(chain, "five"));
     freeBlockchain(&chain);
