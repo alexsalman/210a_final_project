@@ -1,3 +1,4 @@
+///This implementation of blockchain is modeled after code written for another class.
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -35,18 +36,18 @@ long hash(Block B)
     add = (long)(B->id) + (B->prev);
     for (int i = 0; i < strlen(B->data); i++)
     {
-        add = add + (long)B->data[i];
+        add = add + (long)B->data[i];   
     }
     return add;
 }
 
 //print out the contents of the block
-void printBlock(FILE *out, Block B)
+void printBlock(Block B)
 {
-    fprintf(out, " %d ", B->id);
+    fprintf(stdout, " %d ", B->id);
     for (int i = 0; i < strlen(B->data); i++)
     {
-        fprintf(out, "%c", B->data[i]);
+        fprintf(stdout, "%c", B->data[i]);
     }
 }
 
@@ -108,10 +109,10 @@ int size(Blockchain B)
 //Add new block to chain
 int append(Blockchain B, char *data)
 {
-    if (valid(B) != 1)
-    {
-        return 0;
-    }
+    // if (valid(B) != 1)
+    // {
+    //     return 0;
+    // }
 
     if (B->max == 0)
     {
@@ -146,31 +147,31 @@ int append(Blockchain B, char *data)
 }
 
 //check if the blockchain is valid ie. verify every block in the chain in storing the correct previos hash
-int valid(Blockchain B)
-{
-    int valid = -1;
+// int valid(Blockchain B)
+// {
+//     int valid = -1;
 
-    if (B->max <= 1)
-    {
-        return 1;
-    }
+//     if (B->max <= 1)
+//     {
+//         return 1;
+//     }
 
-    for (int i = 1; i < B->max; i++)
-    {
+//     for (int i = 1; i < B->max; i++)
+//     {
 
-        if (previousHash(B->list[i]) == hash(B->list[(i)-1]))
-        {
-            //		if(B[i]->prev < B[i+1]->prev){
-            valid = 1;
-        }
-        else
-        {
-            valid = 0;
-            return valid;
-        }
-    }
-    return valid;
-}
+//         if (previousHash(B->list[i]) == hash(B->list[(i)-1]))
+//         {
+//             //		if(B[i]->prev < B[i+1]->prev){
+//             valid = 1;
+//         }
+//         else
+//         {
+//             valid = 0;
+//             return valid;
+//         }
+//     }
+//     return valid;
+// }
 
 //remove last block of the blockchain
 void removeLast(Blockchain B)
@@ -203,11 +204,11 @@ Blockchain newBlockchain()
 }
 
 //print out the contents of the blockchain
-void printBlockchain(FILE *out, Blockchain B)
+void printBlockchain(Blockchain B)
 {
     for (int i = 0; i < (B->max); i++)
     {
-        printBlock(out, B->list[i]);
+        printBlock(stdout, B->list[i]);
     }
 }
 
@@ -227,17 +228,34 @@ int main(int argc, char *argv[])
     printf("valid = %d\n", valid(chain));
     for (int i = 0; i < size(chain); i++)
     {
-        printBlock(stdout, get(chain, i));
+        printBlock( get(chain, i));
     }
     removeLast(chain);
-    printBlockchain(stdout, chain);
+    printBlockchain(chain);
 
     Block b = get(chain, 0);
     char *value = data(b);
     *value = (*value) + 1; // change a value in the first block
-    printf("valid = %d\n", valid(chain));
+    // printf("valid = %d\n", valid(chain));
 
     printf("%d\n", append(chain, "five"));
     freeBlockchain(&chain);
     return 0;
 }
+
+
+chain = Blockchain()
+
+
+chain.append("one")
+chain.append("two")
+
+chain.block.append(Block("one", id, prev))
+
+def append(self, data){
+
+    self.data
+    
+
+}
+
