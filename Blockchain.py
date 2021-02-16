@@ -41,17 +41,17 @@ class Blockchain():
     #Add new block to chain
     def appendBlock(self, text):
         if len(self.blocks) == 0:
-            self.blocks[0] = BlockObj(text, len(self.data), 0)
+            self.blocks.append(BlockObj(text, len(self.blocks), 0))
         else:
-            self.blocks[len(self.data)] = BlockObj(text, len(self.data), hash( self.blocks[len(self.data)]-1))
+            self.blocks.append(BlockObj(text, len(self.blocks), hash( self.blocks[len(self.blocks)-1])))
 
-        if len(self.data) > 1:
-            if self.blocks[len(self.prev)] - 1 == hash(self.blocks[len(self.data)] - 2):
-                return len(self.data)
-            else:
-                return 0
-        else:
-            return len(self.data)
+        # if len(self.blocks) > 1:
+        #     if self.blocks[len(self.blocks)] - 1 == hash(self.blocks[len(self.blocks)] - 2):
+        #         return len(self.blocks)
+        #     else:
+        #         return 0
+        # else:
+        #     return len(self.blocks)
 
     def removeLast(self):
         del(self.blocks[-1])
@@ -64,4 +64,7 @@ class Blockchain():
 
 obj = Blockchain()
 obj.appendBlock("one")
+
+obj.appendBlock("two")
+
 obj.printBlockchain()
