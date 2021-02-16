@@ -241,20 +241,3 @@ int main(int argc, char *argv[])
     freeBlockchain(&chain);
     return 0;
 }
-
-
-chain = Blockchain()
-
-
-chain.append("one")
-chain.append("two")
-
-chain.block.append(Block("one", id, prev))
-
-def append(self, data){
-
-    self.data
-    
-
-}
-
