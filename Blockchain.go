@@ -1,3 +1,9 @@
+
+import ( 
+    "fmt"
+) 
+
+
 type Block struct { 
 	data string 
 	id  int
@@ -31,3 +37,96 @@ func (b Block) hash() float64 {
 
 
 }
+
+func (b Block) printBlock() {
+
+	fmt.Print(b.id)
+	fmt.Print(b.data)
+}
+
+
+	
+
+
+
+
+
+
+type Blockchain struct { 
+	count int
+    var chain [100]Block
+}
+
+
+type BlockchainFuctions interface {
+	get() Block
+	size() int
+	appendBlock()
+	removeLast()
+	printBlockchain()
+
+	
+}
+
+func (B Blockchain) get(id int) Block {
+	return (B.chain[id])
+}
+
+
+
+func (B Blockchain) size() int {
+	return (B.count)
+}
+
+
+
+func (B Blockchain) appendBlock(data string) {
+
+
+	if(B.count==0){
+
+		var tempBlock = Block{data, B.count, 0}
+
+		// B.chain=append(B.chain, tempBlock)
+	}
+	else{
+
+		var tempBlock = Block{data, B.count, hash(B.chain[(B.count)-1])}
+
+	}
+
+	B.chain=append(B.chain, tempBlock)
+	B.count=B.count+1
+	
+}
+
+
+
+func (B Blockchain) removeLast() {
+	if(B.count==0){
+		return
+	}
+	else{
+		B.chain = B.chain[:len(B.chain)-1] 
+		B.count=B.count-1
+	}
+		
+}
+
+
+func (B Blockchain) printBlockchain() {
+	for i in range(B.chain){
+		printBlock(i)
+	}
+}
+
+
+func main(){
+	var myChain=Blockchain{}
+	
+	myChain.appendBlock("one")
+	
+	myChain.printBlockchain()
+}
+
+

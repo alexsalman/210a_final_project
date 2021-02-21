@@ -31,8 +31,8 @@ class Blockchain():
         self.blocks = []
 
     #Return list of blocks
-    def getBlock(self):
-        return self.blocks
+    def getBlock(self, i):
+        return self.blocks[i]
 
     #Return number of elements in blockchain
     def size(self):
@@ -63,8 +63,9 @@ class Blockchain():
 
 
 obj = Blockchain()
-obj.appendBlock("one")
+obj.appendBlock("whatever")
 
-obj.appendBlock("two")
+obj.appendBlock("threee")
+obj.appendBlock("nope")
 
 obj.printBlockchain()
