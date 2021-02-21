@@ -1,7 +1,6 @@
+package main
 
-import ( 
-    "fmt"
-) 
+import ("fmt")
 
 
 type Block struct { 
@@ -11,7 +10,7 @@ type Block struct {
 }
 
 type BlockFuctions interface {
-    data() string
+    getData() string
 	previosHash() float64
 	hash() float64
 	printBlock() 
@@ -19,7 +18,7 @@ type BlockFuctions interface {
 	
 }
 
-func (b Block) data() string {
+func (b Block) getData() string {
     return b.data
 }
 
@@ -29,13 +28,13 @@ func (b Block) previosHash() float64 {
 
 
 func (b Block) hash() float64 {
-	var total = b.id + b.prev
+	var total = float64(b.id) + b.prev
 
    for i := 0; i < len(b.data); i++ {
-	   total=total+int(b.data[i)])
+	   total=total+float64(b.data[i])
 	} 
 
-
+	return total
 }
 
 func (b Block) printBlock() {
@@ -54,7 +53,7 @@ func (b Block) printBlock() {
 
 type Blockchain struct { 
 	count int
-    var chain [100]Block
+    chain []Block
 }
 
 
@@ -85,17 +84,22 @@ func (B Blockchain) appendBlock(data string) {
 
 	if(B.count==0){
 
+		// fmt.Print("here")
+
 		var tempBlock = Block{data, B.count, 0}
 
-		// B.chain=append(B.chain, tempBlock)
+
+		B.chain=append(B.chain, tempBlock)
+
+		fmt.Print(B.chain)
+	}else{
+
+		var tempBlock = Block{data, B.count, B.chain[(B.count)-1].hash()}
+		B.chain=append(B.chain, tempBlock)
+
 	}
-	else{
 
-		var tempBlock = Block{data, B.count, hash(B.chain[(B.count)-1])}
-
-	}
-
-	B.chain=append(B.chain, tempBlock)
+	
 	B.count=B.count+1
 	
 }
@@ -103,10 +107,9 @@ func (B Blockchain) appendBlock(data string) {
 
 
 func (B Blockchain) removeLast() {
-	if(B.count==0){
+	if B.count==0 {
 		return
-	}
-	else{
+	}else {
 		B.chain = B.chain[:len(B.chain)-1] 
 		B.count=B.count-1
 	}
@@ -115,8 +118,12 @@ func (B Blockchain) removeLast() {
 
 
 func (B Blockchain) printBlockchain() {
-	for i in range(B.chain){
-		printBlock(i)
+	fmt.Print("here")
+	for i := 0; i < B.count; i++ {
+		// fmt.Print(i)
+	// for i := range (B.count){
+		B.chain[i].printBlock()
+		
 	}
 }
 
@@ -125,6 +132,7 @@ func main(){
 	var myChain=Blockchain{}
 	
 	myChain.appendBlock("one")
+	fmt.Print(myChain.count)
 	
 	myChain.printBlockchain()
 }
