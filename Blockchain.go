@@ -1,6 +1,7 @@
 package main
 
 import ("fmt")
+// import "runtime/debug"
 
 
 type Block struct { 
@@ -9,14 +10,14 @@ type Block struct {
 	prev float64  
 }
 
-type BlockFuctions interface {
-    getData() string
-	previosHash() float64
-	hash() float64
-	printBlock() 
-	newBlock() Block
+// type BlockFuctions interface {
+//     getData() string
+// 	previosHash() float64
+// 	hash() float64
+// 	printBlock() 
+// 	newBlock() Block
 	
-}
+// }
 
 func (b Block) getData() string {
     return b.data
@@ -40,7 +41,9 @@ func (b Block) hash() float64 {
 func (b Block) printBlock() {
 
 	fmt.Print(b.id)
+	fmt.Print(" ")
 	fmt.Print(b.data)
+	fmt.Print(" ")
 }
 
 
@@ -57,15 +60,15 @@ type Blockchain struct {
 }
 
 
-type BlockchainFuctions interface {
-	get() Block
-	size() int
-	appendBlock()
-	removeLast()
-	printBlockchain()
+// type BlockchainFuctions interface {
+// 	get() Block
+// 	size() int
+// 	appendBlock()
+// 	removeLast()
+// 	printBlockchain()
 
 	
-}
+// }
 
 func (B Blockchain) get(id int) Block {
 	return (B.chain[id])
@@ -79,7 +82,7 @@ func (B Blockchain) size() int {
 
 
 
-func (B Blockchain) appendBlock(data string) {
+func (B *Blockchain) appendBlock(data string) {
 
 
 	if(B.count==0){
@@ -91,8 +94,10 @@ func (B Blockchain) appendBlock(data string) {
 
 		B.chain=append(B.chain, tempBlock)
 
-		fmt.Print(B.chain)
+		// fmt.Print(B.chain)
 	}else{
+
+		// fmt.Print("in else")
 
 		var tempBlock = Block{data, B.count, B.chain[(B.count)-1].hash()}
 		B.chain=append(B.chain, tempBlock)
@@ -101,12 +106,20 @@ func (B Blockchain) appendBlock(data string) {
 
 	
 	B.count=B.count+1
+	// fmt.Print("here in append\n")
+	// fmt.Print("this is B.count: ")
+	// fmt.Print(B.count)
+	// fmt.Print("\nthis is len of chain: ")
+	// fmt.Println((B.chain))
+	
+
+
 	
 }
 
 
 
-func (B Blockchain) removeLast() {
+func (B *Blockchain) removeLast() {
 	if B.count==0 {
 		return
 	}else {
@@ -118,21 +131,36 @@ func (B Blockchain) removeLast() {
 
 
 func (B Blockchain) printBlockchain() {
-	fmt.Print("here")
+	// fmt.Print("here")
 	for i := 0; i < B.count; i++ {
 		// fmt.Print(i)
 	// for i := range (B.count){
 		B.chain[i].printBlock()
 		
 	}
+	fmt.Print("\n")
 }
 
 
 func main(){
-	var myChain=Blockchain{}
+	var myChain=Blockchain{count:0}
+
+	// var block1 = Block{"hi",2,3}
+	// fmt.Print(block1.getData())
 	
 	myChain.appendBlock("one")
-	fmt.Print(myChain.count)
+
+	
+
+	myChain.appendBlock("two")
+
+
+
+	// fmt.Print(myChain.chain)
+
+	// fmt.Print(myChain.count)
+
+
 	
 	myChain.printBlockchain()
 }
