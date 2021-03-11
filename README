@@ -1,0 +1,21 @@
+README for Blockchain folder.
+
+To run and compile Blockchain.c compile normally for C program
+
+$gcc Blockchain.c -o Blockchain
+$./Blockchain
+
+To compile and run Blockchain.py compile normally for Python program
+
+$python Blockchain.py
+
+To compile and run Blockchain.go there are two ways:
+
+$go run Blockchain.go
+
+or
+
+$go build Blockchain.go
+$./Blockchain
+
+To compile and run Blockchain.rs there are two ways:
