@@ -45,14 +45,6 @@ class Blockchain():
         else:
             self.blocks.append(BlockObj(text, len(self.blocks), hash( self.blocks[len(self.blocks)-1])))
 
-        # if len(self.blocks) > 1:
-        #     if self.blocks[len(self.blocks)] - 1 == hash(self.blocks[len(self.blocks)] - 2):
-        #         return len(self.blocks)
-        #     else:
-        #         return 0
-        # else:
-        #     return len(self.blocks)
-
     def removeLast(self):
         del(self.blocks[-1])
 
