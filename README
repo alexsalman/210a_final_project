@@ -19,3 +19,9 @@ $go build Blockchain.go
 $./Blockchain
 
 To compile and run Blockchain.rs there are two ways:
+
+$ rustic main.rs
+
+or
+
+$ cargo run
