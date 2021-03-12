@@ -18,10 +18,6 @@ or
 $go build Blockchain.go
 $./Blockchain
 
-To compile and run main.rs there are two ways:
-
-210a_final_project% rustc main.rs
-
-or
+To compile and run main.rs:
 
 210a_final_project% cargo run
