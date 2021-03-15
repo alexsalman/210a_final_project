@@ -20,4 +20,4 @@ $./Blockchain
 
 To compile and run main.rs:
 
-210a_final_project% cargo run
+$cargo run
