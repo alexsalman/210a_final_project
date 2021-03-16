@@ -9,3 +9,5 @@ edition = "2018"
 [dependencies]
 hex = "0.3.2"
 crypto-hash = "0.3.3"
+blake2 = "*"
+chrono = "0.4"
