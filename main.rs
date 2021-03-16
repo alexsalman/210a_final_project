@@ -5,7 +5,6 @@ use std::result::Result;
 
 // instantiate a block
 #[derive(Clone, Debug)]
-
 pub struct Block {
     data: String,
     id: i32,
@@ -27,16 +26,17 @@ impl Block {
         println!("{}", self.id);
         println!("{}", self.data);
     }
+
 }
 
+// instantiate a blockchain
 #[derive(Debug, Clone)]
 pub struct Blockchain {
-    // the chain of the blocks
     pub blocks: Vec<Block>,
 }
 
 impl Blockchain {
-    // Constructor
+
     pub fn new() -> Self {
         Blockchain {
             blocks: Vec::new(),
@@ -44,9 +44,8 @@ impl Blockchain {
     }
 
     pub fn get_block(&mut self, i: usize) -> Option<&Block> {
-        let resultt = self.blocks.get(i);
-        println!("{:?}", resultt);
-        return resultt;
+        let res = self.blocks.get(i);
+        return res;
     }
 
     pub fn remove_last(&mut self){
@@ -76,10 +75,12 @@ impl Blockchain {
             println!("{:?}", i.print_block());
         }
     }
+
 }
 
 fn main() {
-    
+
+    // current timestamp
     let local: DateTime<Local> = Local::now();
     println!("{}", local);
     
@@ -527,6 +528,8 @@ fn main() {
     let to_print = bc.clone();
     to_print.print_block_chain();
 
+    // current timestamp
     let local: DateTime<Local> = Local::now();
     println!("{}", local);
+
 }
