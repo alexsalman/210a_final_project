@@ -86,7 +86,6 @@ fn main() {
     
     // Create a new Blockchain
     let mut bc = Blockchain::new();
-    bc.append_block("helloooooo".to_string());
     
     bc.append_block("test1".to_string());
     bc.len();
