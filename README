@@ -21,3 +21,5 @@ $./Blockchain
 To compile and run main.rs:
 
 $cargo run
+
+Note: since using makefile for, the actual rust code "main.rs" is inside the folder src; however, we included a copy of it out of src folder for visibility.
